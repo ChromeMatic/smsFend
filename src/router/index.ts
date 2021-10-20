@@ -6,7 +6,7 @@ import StudentView from  '@/views/StudentView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path:'/login',
+    path:'/',
     name:'longin',
     component:LandingView
   },
