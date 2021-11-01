@@ -1,4 +1,5 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import authService from "@/Services/AuthService";
 
 export default createStore({
   state: {
@@ -7,8 +8,6 @@ export default createStore({
       password:"",
       roles:[]
     },
-    student:{},
-    teacher:{}
   },
   mutations: {
   },

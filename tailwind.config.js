@@ -1,16 +1,10 @@
 module.exports = {
-    purge: [
-        './src/**/*.vue',
-    ],
-    darkMode: true,
+    purge: ['./src/**/*.vue',],
+    darkMode: false,
     theme: {
         extend: {
-            fontFamily:{
-                body:['Montserrat']
-            },
-            animation:{
-                bounce:'bounce 5s infinite'
-            }
+            animation:{ bounce:'pulse .8s infinite'},
+            animation:{ bounce:'ping 2s infinite'}
         },
     },
     variants: {
