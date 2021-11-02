@@ -22,7 +22,10 @@
 
 <script>
 export default {
-  name: "StudentSettings"
+  name: "StudentSettings",
+  data(){
+    return{}
+  }
 }
 </script>
 

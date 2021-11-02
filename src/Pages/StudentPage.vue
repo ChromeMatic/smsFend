@@ -48,12 +48,21 @@
         </button>
 
         <button @click="activeComponent='Assignments'" class="flex justify-center text-green-500 items-center p-2 rounded-xl hover:bg-gray-200 transition ease-in-out">
-          <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
           <span class="text-green-500 text-lg font-base subpixel-antialiased">
           Assignment
         </span>
+        </button>
+
+        <button @click="activeComponent='LiveSessions'" class="flex justify-center text-green-500 items-center p-2 rounded-xl hover:bg-gray-200 transition ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span class="text-green-500 text-lg font-base subpixel-antialiased">
+             Live-Classes
+          </span>
         </button>
 
       </div>
@@ -117,7 +126,7 @@ export default {
   background-color: #fafafa;
 }
 .fade-enter-active,.fade-leave-active{
-  transition: opacity .7s ease-out;
+  transition: opacity .3s ease;
 }
 .fade-enter,.fade-leave-to{
   opacity: 0;
