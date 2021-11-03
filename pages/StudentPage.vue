@@ -1,21 +1,20 @@
 <template>
   <div class="flex h-screen">
 
-    <div class="flex flex-col pa-2 w-1/6 justify-between items-center backG">
+    <div class="flex flex-col p-1 w-1/6 justify-between items-center backG">
 
+      <!-- logo -->
+      <div class="flex space-x-1 mt-2 justify-center items-center rounded-xl bg-white p-2 shadow-2xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500 " viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+        </svg>
+        <h3 class="text-gray-500 text-xl font-normal subpixel-antialiased">
+          E-learning
+        </h3>
+      </div>
+      <!-- logo -->
 
-      <div class="flex flex-col space-y-8">
-
-        <!-- logo -->
-        <div class="flex space-x-1 mt-4 justify-center items-center rounded-xl bg-white p-2 shadow-2xl">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500 " viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
-          </svg>
-          <h3 class="text-gray-500 text-xl font-normal subpixel-antialiased">
-            E-learning
-          </h3>
-        </div>
-        <!-- logo -->
+      <div class="flex flex-col space-y-4">
 
         <button @click="activeComponent='home'" class="p-2 flex justify-center items-center rounded-xl hover:bg-gray-200 transition ease-in-out">
           <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +66,7 @@
 
       </div>
 
-      <div class="flex mb-8">
+      <div class="flex ">
 
         <button @click="activeComponent='StudentSettings'" class="flex justify-center items-center p-2 rounded-xl hover:bg-gray-200 transition ease-in-out">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,6 +108,17 @@ import TimeTable from '../components/StudentComponents/TimeTable.vue';
 import StudentSettings from '../components/StudentComponents/StudentSettings.vue';
 
 export default Vue.extend({
+  name:"StudentPage",
+  head:{
+    title:'Student Dashboard',
+    meta:[
+      {
+        hid:'studentDashboard',
+        name:'Student Dashboard',
+        content:'Contains Student resource and classes, Assignment, TimeTable and student Settings'
+      }
+    ]
+  },
   components:{
     Navbar,home,Assignment,CourseResources,LiveSessions,
     TimeTable,StudentSettings

@@ -81,10 +81,20 @@
 import Vue from 'vue'
 export default Vue.extend({
   name:'index',
+  head:{
+    title:'SMS Login page',
+    meta:[
+      {
+        hid:'login',
+        name:'Login page',
+        content:'Login page for School Management Systems application'
+      }
+    ]
+  },
   data:()=>({
     username: "",
     password:"",
-    pic:"/img/loginPic.jpg",
+    pic:"/loginPic.jpg",
     valid:false,
     show:false,
     forgetPassword:false
@@ -100,7 +110,6 @@ export default Vue.extend({
     }
   },
   methods:{
-
     login(){
       //Validation
       let Valid:boolean = this.IsValid;

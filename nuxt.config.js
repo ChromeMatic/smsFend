@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'smsvnuxt',
+    title: 'School Management System',
     htmlAttrs: {
       lang: 'en'
     },

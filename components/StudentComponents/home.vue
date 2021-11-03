@@ -1,8 +1,8 @@
 <template>
- <div class="pl-4 pt-2 pr-4 flex flex-col">
+ <div class="m-2 flex flex-col">
 
 
-   <div class="flex mt-2 mb-4 space-x-3 justify-between">
+   <div class="flex  mb-4 space-x-3 justify-between">
 
      <div class=" flex justify-center items-center space-x-3 h-64 w-1/3 rounded-xl backG">
 
