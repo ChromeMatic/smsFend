@@ -1,5 +1,5 @@
 <template>
-  <nav class="py-4 backG">
+  <nav class="hidden py-4 backG">
 
     <div class="max-w-6xl mx-auto">
       <div class="flex justify-between ">
