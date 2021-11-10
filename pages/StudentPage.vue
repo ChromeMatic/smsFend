@@ -27,11 +27,11 @@
       <div v-show="show" class=" flex flex-col text-green-500 justify-center items-center transition
       duration-200 ease-in-out">
 
-        <dvi v-for="button in Buttons" :key="button.Name" >
+        <div v-for="button in Buttons" :key="button.Name" >
           <button @click="activeComponent= button.btn" class="block flex justify-center items-center rounded py-2.5 px-6 min-w-full hover:bg-gray-200">
             <span>{{button.Name}}</span>
           </button>
-        </dvi>
+        </div>
 
       </div>
 
@@ -45,8 +45,7 @@
       inset-y-0 left-0 transform
       -translate-x-full transition
       duration-200 ease-in-out
-      md:relative md:translate-x-0"
-    >
+      md:relative md:translate-x-0">
 
        <a href="#" class="ml-10 bg-white shadow-2xl py-2 rounded-xl mt-1 flex items-center justify-center space-x-2">
           <svg xmlns="http://www.w3.org/2000/svg"

@@ -42,9 +42,7 @@
        </div>
 
        <div class="flex flex-col flex-auto lg:space-y-4 space-y-2  justify-center">
-         <div v-for="n in 8">
-           <div class="rounded bg-gray-300 h-4 lg:h-6 w-64 lg:w-96"></div>
-         </div>
+         {{Infos[0]}}
        </div>
      </div>
 
@@ -65,7 +63,16 @@ export default Vue.extend({
         Test_4:2,
         Test_5:12,
       },
+    Infos:{},
+    size:0
   }),
+ async mounted() {
+    let id:number = 63
+    let x = await this.$axios.get('http://localhost:8080/api/v1/users/',{
+      params:{id}
+    }).then(response => (this.Infos = response.data));
+    this.size = x.length;
+  },
   computed:{},
   methods:{}
 });
