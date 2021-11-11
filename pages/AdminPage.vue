@@ -26,7 +26,6 @@
 
     <div class="flex flex-col flex-auto">
 
-      <AdminNav/>
       <AdminHome/>
 
     </div>
@@ -36,7 +35,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import AdminNav from "~/components/AdminComponents/AdminNav.vue";
 import AdminHome from "~/components/AdminComponents/AdminHome.vue";
 export default Vue.extend({
   name: "AdminPage",
@@ -50,7 +48,7 @@ export default Vue.extend({
       }
     ]
   },
-  components:{AdminNav,AdminHome},
+  components:{AdminHome},
   data:()=>({}),
   computed:{},
   methods:{}

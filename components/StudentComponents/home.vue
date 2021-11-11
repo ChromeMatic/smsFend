@@ -42,7 +42,7 @@
        </div>
 
        <div class="flex flex-col flex-auto lg:space-y-4 space-y-2  justify-center">
-         {{Infos[0]}}
+       {{Infos}}
        </div>
      </div>
 
@@ -67,10 +67,9 @@ export default Vue.extend({
     size:0
   }),
  async mounted() {
-    let id:number = 63
-    let x = await this.$axios.get('http://localhost:8080/api/v1/users/',{
-      params:{id}
-    }).then(response => (this.Infos = response.data));
+    let studentId:number = 72;
+    let x = await this.$axios.get('http://localhost:8080/api/s1/student/'+studentId,
+     ).then(response => (this.Infos = response.data));
     this.size = x.length;
   },
   computed:{},

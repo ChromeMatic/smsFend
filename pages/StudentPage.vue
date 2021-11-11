@@ -127,7 +127,6 @@
 import Vue from 'vue';
 import home from '../components/StudentComponents/home.vue';
 import Assignment from '../components/StudentComponents/Assignments.vue';
-import Navbar from '../components/StudentComponents/Navbar.vue';
 import CourseResources from '../components/StudentComponents/CourseResources.vue';
 import LiveSessions from '../components/StudentComponents/LiveSessions.vue';
 import TimeTable from '../components/StudentComponents/TimeTable.vue';
@@ -146,7 +145,7 @@ export default Vue.extend({
     ]
   },
   components:{
-    Navbar,home,Assignment,CourseResources,LiveSessions,
+    home,Assignment,CourseResources,LiveSessions,
     TimeTable,StudentSettings
   },
   data:()=>({
