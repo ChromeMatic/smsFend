@@ -1,49 +1,83 @@
 <template>
- <div class="m-2 p-3 flex flex-col justify-center space-y-4">
+ <div class="p-2.5 flex flex-col justify-center space-y-4">
 
-   <div class="text-green-500 space-y-4 lg:space-y-0 lg:flex lg:space-x-2 lg:justify-between">
-     <div class="animate-pulse flex justify-center lg:items-center lg:w-64 lg:h-64 bg-gray-100 rounded-xl shadow-xl">
-          <div class="w-32 h-32 lg:w-48 lg:h-48 bg-gray-300 rounded-full"></div>
-     </div>
-     <div class="animate-pulse lg:flex lg:flex-auto p-2 lg:h-64 bg-gray-100 rounded-xl shadow-xl">
-       <line-chart height="40" :data="lineData" />
+   <div class="text-green-500 space-y-4 lg:space-y-0 lg:flex lg:space-x-2
+               lg:justify-between rounded shadow-xl">
+
+     <div class="flex justify-center items-center lg:flex-col lg:w-64 lg:h-72 bg-white rounded-xl">
+
+       <div class="rounded-full h-48 w-48 bg-gray-200 mb-2"></div>
+
+       <div class="flex space-x-2 p-1.5">
+         <div class="rounded flex justify-center items-center bg-gray-100 h-12 w-16">
+           <h1>ID#: {{Infos.studentId}}</h1>
+         </div>
+         <div class="rounded flex justify-center items-center bg-gray-100 h-12 w-32">
+           <h1>{{Infos.studentName}}</h1>
+         </div>
+       </div>
+
      </div>
 
-     <div class="animate-pulse flex flex-col space-y-2 p-2 lg:p-0 justify-center items-center lg:w-64 lg:h-64 bg-gray-100 rounded-xl shadow-xl">
-        <div v-for="n in 4">
-          <div class="rounded bg-gray-200 h-8 w-48"></div>
-        </div>
+     <!-- Chart Diagram -->
+     <div class="lg:flex lg:flex-col lg:flex-auto p-2 lg:h-72 bg-gray-50 rounded-xl">
+       <TrendChart
+         :datasets="datasets"
+          :grid="grid"
+          :labels="labels"
+          :min="0"
+       />
+       <button class="block mt-2 mb-1 p-1.5 bg-gray-200 rounded">
+         VIEW ALL GRADES
+       </button>
+     </div>
+
+     <div class="flex flex-col space-y-2 p-2 lg:p-0 justify-center items-center lg:w-64 lg:h-72
+                 bg-white rounded-xl">
+          <div v-for="n in 4">
+            <div class="rounded flex justify-center items-center bg-gray-200 h-8 w-48"></div>
+          </div>
      </div>
 
    </div>
 
-   <div class="animate-pulse flex space-y-2 items-center lg:justify-evenly lg:space-y-0 lg:flex-auto lg:flex-row flex-col height
-        rounded-xl bg-gray-100 shadow-xl">
+   <div class="flex space-y-2 items-center lg:justify-evenly lg:space-y-0 lg:flex-auto
+               lg:flex-row flex-col height rounded-xl bg-gray-50 shadow-xl">
 
-     <div class="flex flex-row ">
-       <div class="flex justify-center ml-2 mr-2 lg:ml-4 lg:mr-4 flex-col lg:space-y-2 space-y-1">
-         <div v-for="n in 3">
-           <div class="rounded bg-gray-300 lg:h-24 h-16 lg:w-24 w-16"></div>
-         </div>
-       </div>
+     <div class="flex flex-col">
 
-       <div class="flex flex-col flex-auto lg:space-y-4 space-y-2  justify-center">
-         <div v-for="n in 8">
-           <div class="rounded bg-gray-300 h-4 lg:h-6 w-64 lg:w-96"></div>
+       <h1 class="text-4xl text-center mb-4 font-light text-green-500">
+          Courses
+       </h1>
+
+        <div v-for="course in Infos.courses" :key="course.courseId">
+         <div class="flex space-x-3">
+           <h1 class="text-xl font-light text-gray-600 ">
+             {{course.courseName}}
+           </h1>
+           <h1 class="text-xl font-light text-gray-600 mb-2">
+            {{course.timeAndDate}}
+           </h1>
          </div>
-       </div>
+        </div>
      </div>
 
-     <div class="flex flex-row ">
-       <div class="flex justify-center ml-2 mr-2 lg:ml-4 lg:mr-4 flex-col lg:space-y-2 space-y-1">
-         <div v-for="n in 3">
-           <div class="rounded bg-gray-300 lg:h-24 h-16 lg:w-24 w-16"></div>
-         </div>
-       </div>
+     <div class="flex flex-col">
 
-       <div class="flex flex-col flex-auto lg:space-y-4 space-y-2  justify-center">
-       {{Infos}}
-       </div>
+       <h1 class="text-4xl text-center mb-4 font-light text-green-500">
+         Assignments
+       </h1>
+
+
+     </div>
+
+     <div class="flex flex-col">
+
+       <h1 class="text-4xl text-center mb-4 font-light text-green-500">
+         Calender
+       </h1>
+
+
      </div>
 
    </div>
@@ -52,32 +86,55 @@
 </template>
 
 <script lang="ts">
+import {mapState,
+        mapGetters,
+        mapActions,
+        mapMutations
+} from 'vuex';
 import Vue from "vue";
 export default Vue.extend({
   name: "home",
   data:()=>({
-    lineData:{
-        Test_1:10,
-        Test_2:12,
-        Test_3:5,
-        Test_4:2,
-        Test_5:12,
+    Infos:[],
+    datasets:[
+      {
+        data: [60, 70, 50],
+        smooth: true,
+        showPoints: true,
+        fill: true,
       },
-    Infos:{},
-    size:0
+      {
+        data: [80, 70, 60],
+        smooth: true,
+        showPoints: true,
+        fill: true,
+      },
+      {
+        data: [90, 66, 75],
+        smooth: true,
+        showPoints: true,
+        fill: true,
+      },
+    ],
+    grid:{
+      verticalLines: true,
+      horizontalLines: true
+    },
+    labels:{
+      xLabels: ['Test 1', 'Test 2', 'Test 3'],
+      yLabels: 6
+    }
   }),
- async mounted() {
-    let studentId:number = 72;
-    let x = await this.$axios.get('http://localhost:8080/api/s1/student/'+studentId,
-     ).then(response => (this.Infos = response.data));
-    this.size = x.length;
+   async mounted(){
+   let studentId = 16;
+   await this.$axios.get("http://localhost:8080/api/s1/student/"+studentId)
+     .then(response => (this.Infos = response.data))
   },
-  computed:{},
   methods:{}
 });
 </script>
 
 <style scoped>
 .backG{background-color: #fafafa;}
-.height{height: 27rem;}
+.height{height: 26rem;}
 </style>

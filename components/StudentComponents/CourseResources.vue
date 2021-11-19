@@ -4,7 +4,7 @@
     <div class="flex justify-between space-x-4 mb-2">
 
       <div class="BG justify-center flex rounded-xl h-64 w-72 animate-pulse">
-         <div class="rounded-full w-64 h-64 bg-gray-200"></div>
+            <p>{{student.courseResources}}</p>
       </div>
 
       <div class="BG p-2 mt-2 ml-2 rounded-xl flex h-64 w-1/2">
@@ -94,7 +94,14 @@
 import Vue from "vue";
 export default Vue.extend( {
   name: "CourseResources",
-  data:()=>({}),
+  data:()=>({
+    student:[]
+  }),
+  async mounted() {
+    let studentId:number = 16;
+    await this.$axios.get("http://localhost:8080/api/s1/student/"+studentId)
+    .then(response => (this.student = response.data))
+  },
   computed:{},
   methods:{}
 })

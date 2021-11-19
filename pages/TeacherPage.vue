@@ -109,8 +109,7 @@
 
       </div>
 
-      <div class="flex flex-col">
-
+      <div class="flex flex-col flex-1">
         <!-- Display Content -->
         <transition name="fade">
           <component :is="activeComponent"/>

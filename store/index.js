@@ -1,38 +1,20 @@
-const state =()=>({
-  user:{
-    username:'',
-    password:''
-  },
-
-  userRoles:{
-    RoleName:''
-  },
-
-  Teacher:{},
-
-  Student:{},
-
-  Grades:{},
-
-  Courses:{},
-
-  CoursesResources:{},
+//State
+export const state = () => ({
+  user:[],
 });
 
-const getters =()=>{
+//Getters
+export const getters ={
+};
+
+//Action
+export const action ={
 
 };
 
-const actions =()=>{
+//Mutation
+export const mutation ={
 
 };
-
-let mutation =()=>{
-
-};
-
-export default [state(),getters(),actions(),mutation()]
-
-
 
 

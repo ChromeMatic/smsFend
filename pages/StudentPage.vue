@@ -39,6 +39,7 @@
 
     <!-- SideNav -->
     <div class="
+      shadow-xl rounded
       backG flex flex-col
       text-green-500 w-64 px-4
       py-2 justify-between absolute
