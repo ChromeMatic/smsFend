@@ -19,19 +19,6 @@
 
      </div>
 
-     <!-- Chart Diagram -->
-     <div class="lg:flex lg:flex-col lg:flex-auto p-2 lg:h-72 bg-gray-50 rounded-xl">
-       <TrendChart
-         :datasets="datasets"
-          :grid="grid"
-          :labels="labels"
-          :min="0"
-       />
-       <button class="block mt-2 mb-1 p-1.5 bg-gray-200 rounded">
-         VIEW ALL GRADES
-       </button>
-     </div>
-
      <div class="flex flex-col space-y-2 p-2 lg:p-0 justify-center items-center lg:w-64 lg:h-72
                  bg-white rounded-xl">
           <div v-for="n in 4">
@@ -96,34 +83,6 @@ export default Vue.extend({
   name: "home",
   data:()=>({
     Infos:[],
-    datasets:[
-      {
-        data: [60, 70, 50],
-        smooth: true,
-        showPoints: true,
-        fill: true,
-      },
-      {
-        data: [80, 70, 60],
-        smooth: true,
-        showPoints: true,
-        fill: true,
-      },
-      {
-        data: [90, 66, 75],
-        smooth: true,
-        showPoints: true,
-        fill: true,
-      },
-    ],
-    grid:{
-      verticalLines: true,
-      horizontalLines: true
-    },
-    labels:{
-      xLabels: ['Test 1', 'Test 2', 'Test 3'],
-      yLabels: 6
-    }
   }),
    async mounted(){
    let studentId = 16;

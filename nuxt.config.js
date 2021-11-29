@@ -15,7 +15,14 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/dashboard.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/dashboard.ico' },
+      { rel:'preconnect', href:"https://fonts.googleapis.com"},
+      { rel: "preconnect",href:"https://fonts.gstatic.com"},
+      {
+        rel: "stylesheet",
+        href:"https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Montserrat:wght@100;200;400&display=swap",
+      }
+
     ]
   },
 
@@ -24,9 +31,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/VueTrendsCharts.js', mode: 'client' }
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
