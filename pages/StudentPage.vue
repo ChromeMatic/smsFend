@@ -43,8 +43,8 @@
 
       <!-- SideNav -->
       <div class="font-DM
-      shadow-xl rounded
-      backG flex flex-col
+      rounded shadow
+      bg-white flex flex-col
       text-green-500 w-64 px-4
       py-2 justify-between absolute
       inset-y-0 left-0 transform
@@ -52,7 +52,7 @@
       duration-200 ease-in-out
       md:relative md:translate-x-0">
 
-        <a href="#" class="ml-10 bg-white shadow-2xl py-2 rounded-xl mt-1 flex items-center justify-center space-x-2">
+        <a href="#" class="ml-10 bg-white shadow-xl py-2 rounded-xl mt-1 flex items-center justify-center space-x-2">
           <svg xmlns="http://www.w3.org/2000/svg"
                class="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M12 14l9-5-9-5-9 5 9 5z" />

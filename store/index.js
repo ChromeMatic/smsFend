@@ -1,20 +1,16 @@
-//State
-export const state = () => ({
-  user:[],
-});
 
-//Getters
-export const getters ={
-};
+export const state= () => ({
+   Student:{}
+})
 
-//Action
-export const action ={
+export const actions={
 
-};
+}
 
-//Mutation
-export const mutation ={
+export const mutation={
 
-};
+}
 
+export const getters={
 
+}
