@@ -1,7 +1,7 @@
 <template>
  <div class="p-1.5 flex flex-col justify-center space-y-4">
 
-   <div class="text-green-500 h-full space-y-4 lg:space-y-0 lg:flex lg:space-x-2
+   <div class="text-green-500 h-96 space-y-4 lg:space-y-0 lg:flex lg:space-x-2
                lg:justify-center lg:items-center p-2 bg-gray-50">
 
      <div class="flex justify-center p-1.5 items-center lg:flex-col lg:w-64 lg:h-80 bg-white
@@ -11,10 +11,10 @@
 
        <div class="flex space-x-2 p-1.5">
          <div class="rounded flex justify-center text-sm items-center bg-gray-100 h-12 w-16">
-           <h1>ID#:{{Infos.studentId}}</h1>
+           <h1>ID#:{{Student.studentId}}</h1>
          </div>
          <div class="rounded flex justify-center text-sm items-center bg-gray-100 h-12 w-28">
-           <h1>{{Infos.studentName}} </h1>
+           <h1>{{Student.studentName}}</h1>
          </div>
        </div>
 
@@ -30,7 +30,6 @@
 
      <div class="flex justify-center items-center lg:flex-col lg:w-96 lg:h-80 bg-white
                  shadow rounded">
-
      </div>
 
    </div>
@@ -44,8 +43,8 @@
           Courses
        </h1>
 
-       <!--   -->
-        <div v-for="course in Infos.courses" :key="course.courseId" >
+       <!-- -->
+        <div v-for="course in Student.courses" :key="course.courseId" >
          <div class="flex space-x-3">
            <h1 class="text-sm font-light text-gray-600 ">
              {{course.courseName}}
@@ -81,12 +80,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import {mapState,mapActions} from  "vuex";
 import BarChart from "~/components/ChartComponents/BarChart.vue";
 export default Vue.extend({
   name: "home",
   components: {BarChart},
   data:()=>({
-    Infos:{},
     BarChartData:{
       labels:["Jan","Feb","Mar","Apr"],
       datasets:[
@@ -105,18 +104,20 @@ export default Vue.extend({
       responsive:true
     },
   }),
-  async mounted() {
-    let Id:number =16;
-    await this.$axios.get("http://localhost:8080/api/s1/student/"+Id)
-      .then( response => (this.Infos = response.data))
+  computed:{
+  ...mapState('Student',["Student"])
+  },
+  methods:{
+   ...mapActions('Student',["getStudentInfo"])
+  },
+  mounted(){
+    let Id:number = 16;
+    this.getStudentInfo(Id);
   },
 });
 </script>
 
 <style scoped>
-.backG{background-color: #fafafa;}
 .height{height: 26rem;}
-.chat{
-  width:16rem;
-}
+.chat{width:16rem;}
 </style>

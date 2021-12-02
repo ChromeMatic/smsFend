@@ -5,9 +5,9 @@
                lg:space-x-2 lg:space-y-0 space-y-6 lg:p-3 p-1.5
                items-center justify-between">
 
-   <div class="rounded flex flex-col mb-4 lg:mb-0 p-2 space-y-2 lg:space-y-4 h-80
+      <div class="rounded flex flex-col mb-4 lg:mb-0 p-2 space-y-2 lg:space-y-4 h-80
                w-72 bg-white items-center justify-center">
-        <h1 class="text-green-500 text-center font-semibold">
+        <h1 class="text-green-500 text-center font-medium">
           Welcome Back
         </h1>
 
@@ -16,16 +16,16 @@
        <div class="flex  flex-col justify-center items-center h-12 w-full  space-y-2
                    bg-white rounded shadow">
           <h1 class="text-sm text-gray-600 ">
-            Name: {{user.username}}
+            Name:{{user.username}}
           </h1>
            <h1 class="text-sm text-gray-600">
-             ID: {{user.userId}}
+             ID:{{user.userId}}
            </h1>
        </div>
      </div>
 
 
-     <div class="rounded lg:space-x-6 space-y-4 h-72 lg:h-80
+      <div class="rounded lg:space-x-6 space-y-4 h-72 lg:h-80
                  flex flex-col lg:flex-row flex-auto
                  bg-gray-50 items-center justify-center">
        <LineChart
@@ -35,8 +35,7 @@
        />
 
        <div class="bg-white p-2 space-y-2 flex flex-col w-64 lg:h-60 lg:w-1/2 rounded shadow">
-            <h1 class="text-center lg:mt-4 mt-2 mb-2 lg:mb-4 mt-2 mb-2 text-xl text-gray-600
-            font-semibold">
+            <h1 class="text-center lg:mt-4 mt-2 mb-2 lg:mb-4 mt-2 mb-2 text-lg leading-6 font-medium text-gray-600">
               School Attendance across Region 1
             </h1>
 
@@ -51,56 +50,12 @@
 
    </div>
 
-   <div class="flex space-x-2 bg-white p-2 h-96
-              justify-center items-center  ">
+   <div class="flex flex-col space-y-2 lg:space-y-6
+               lg:space-y-y bg-gray-50 h-full justify-center
+               items-center mb-2">
 
-     <div class="flex flex-col space-y-4 h-80 items-center bg-white justify-center
-                w-96 shadow rounded">
-       <h1 class="text-center text-gray-600 mb-4 font-semibold text-xl">
-         Find School
-       </h1>
-       <div class="flex flex-col space-y-2">
-
-
-         <div class="mb-4 md:w-full">
-           <label class="block text-sm font-light text-gray-800 mb-1">School Name</label>
-           <input v-model="Name" class="w-72 border rounded p-2 outline-none focus:shadow-outline"
-                  type="text" placeholder="Please enter school name.">
-         </div>
-
-       </div>
-       <button @click="GetSchool" class="rounded h-10  text-white w-72 font-semibold bg-green-500 shadow block">
-         VIEW
-       </button>
-     </div>
-
-     <div class="flex justify-center items-center flex-col h-80
-                flex-auto bg-white shadow rounded space-y-2">
-
-       <h1>
-         School Name: {{SchoolsInfos.schoolName}}
-       </h1>
-
-       <h1>
-         School Address: {{SchoolsInfos.schoolAddress}}
-       </h1>
-
-       <h1>
-         School Report: {{SchoolsInfos.schoolReport}}
-       </h1>
-
-
-     </div>
-
-   </div>
-
-   <div class="flex flex-col
-               space-y-2 lg:space-y-6
-               lg:space-y-y bg-gray-50 h-full
-               justify-center items-center mb-2">
-
-     <h1 class="text-gray-600 font-light text-3xl">
-       {{SchoolsInfos.schoolName}} Statics
+     <h1 class="text-2xl leading-6 font-medium text-gray-600">
+        Statics on Region 1
      </h1>
 
      <div class="flex space-x-2">
@@ -148,12 +103,7 @@
        </div>
      </div>
 
-     <button class="rounded h-10  text-white w-72 font-semibold bg-green-500 shadow block">
-       Generate Report
-     </button>
-
    </div>
-   <br>
 
  </div>
 </template>
@@ -163,14 +113,11 @@ import Vue from "vue";
 import LineChart from "~/components/ChartComponents/LineChart.vue";
 import BarChart from "~/components/ChartComponents/BarChart.vue";
 import PieChart from "~/components/ChartComponents/PieChart.vue";
+import {mapState,mapActions} from "vuex";
 export default Vue.extend( {
   name: "AdminHome",
   components: {PieChart, BarChart, LineChart},
   data:()=>({
-    Region:'',
-    Name:'',
-    SchoolsInfos:[],
-    user:{},
     chartData:{
       labels:["Jan","Feb","Mar","Apr"],
       datasets:[
@@ -226,24 +173,19 @@ export default Vue.extend( {
       ]
     }
   }),
-  async mounted() {
-    await this.$axios.get("http://localhost:8080/api/v1/management/user/16")
-    .then(response => (this.user = response.data));
+  computed:{
+   ...mapState('user',["user"]),
   },
   methods:{
-    async GetSchool(){
-      await this.$axios.get("http://localhost:8080/api/v1/management/schoolName/"+this.Name)
-        .then( response => (this.SchoolsInfos = response.data));
-    }
-  }
+   ...mapActions('user',["getUser"]),
+  },
+  mounted(){
+   let Id:number =10;
+   this.getUser(Id);
+  },
 })
 </script>
 
 <style scoped>
-.backG{
-  background-color: #fafafa;
-}
-.boxH{
-  height: 24rem;
-}
+.boxH{height: 24rem;}
 </style>
