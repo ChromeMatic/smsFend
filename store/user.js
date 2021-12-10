@@ -6,21 +6,36 @@
 //State
 export const state= () => ({
   user:{},
-  Users:[]
+  Users:[],
+  error:{}
 })
 
 //Getters
 export const getters={
      getUser: state => state.user,
-     get_Users: state => state.Users
+     get_Users: state => state.Users,
+     get_error: state => state.error
 }
 
 //Actions
 export const actions={
-  async getUser({commit},ID){
-    let user = await this.$axios.get("http://localhost:8080/api/v1/management/user/"+ID);
-    commit('SetUser',user.data);
-    return user.data;
+
+  async getUserById({commit},ID){
+
+    await this.$axios.get(process.env.ManagementURl+"user/"+ID,
+      {headers:{ 'Authorization': 'Bearer '+localStorage.getItem('Access_Tokens')}}
+    ).then(
+      response =>{commit('SetUser',response.data);}
+    ).catch(function (error){
+      console.log("HTTP Status: ",error.response.status)
+      console.log("HTTP Status: ",error.response.data)
+
+      let error_message = {
+        message: "User does not exist."
+      }
+      commit('Set_UserError',error_message)
+    });
+
   }
 }
 
@@ -28,5 +43,9 @@ export const actions={
 export const mutations={
   SetUser(state,user){
      state.user = user;
+  },
+
+  Set_UserError(state,payload){
+    state.error = payload;
   }
 }

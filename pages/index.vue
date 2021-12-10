@@ -78,6 +78,7 @@
 </template>
 
 <script lang="ts">
+import {mapActions} from "vuex";
 import Vue from 'vue'
 export default Vue.extend({
   name:'index',
@@ -106,15 +107,28 @@ export default Vue.extend({
 
       if (UserLength <= 0 || PasswordLength <= 0){
         return false;
-      }else{ return true;}
+      }else{
+        return true;
+      }
     }
   },
   methods:{
-    login(){
+    ...mapActions("AuthStore",['Login']),
+     login(){
       //Validation
       let Valid:boolean = this.IsValid;
 
-      if(!Valid){this.show=true}
+      if(!Valid){
+        this.show=true
+      }else{
+        let user ={
+          username: this.username,
+          password: this.password
+        }
+        this.Login(user);
+        this.$router.push('/AdminPAge');
+      }
+
     }
   }
 })

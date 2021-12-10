@@ -14,9 +14,7 @@ export const getters={
 export const actions={
 
   async getSchoolsNames({commit}){
-    let schoolName = await this.$axios.get("http://localhost:8080/api/v1/management/schools")
-    commit("AddNames",schoolName.data);
-    return schoolName.data;
+
   },
 
 

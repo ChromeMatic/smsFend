@@ -19,12 +19,14 @@
           <h1>Students</h1>
         </div>
 
+        <!--
         <div v-for="student in info.students":key="student.studentId">
           <div class="bg-green-400 text-center text-white font-semibold  rounded shadow-xl h-32 w-72 lg:h-16 lg:w-80">
             <h2 class="pt-4">{{student.studentName}}</h2>
             <p>{{info.schoolName}}</p>
           </div>
         </div>
+        -->
 
       </div>
 
@@ -42,11 +44,7 @@ export default Vue.extend({
   data:()=>({
    info:{},
   }),
-  async mounted() {
-    let Id:number =121;
-    await this.$axios.get("http://localhost:8080/api/v1/management/school/"+Id)
-    .then( response => (this.info = response.data))
-  },
+
   computed:{},
   methods:{}
 })

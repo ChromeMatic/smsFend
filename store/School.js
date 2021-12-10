@@ -6,28 +6,56 @@
 //State
 export const state=()=>({
   School:{},
-  Schools:[]
+  Schools:[],
+  ErrorObj:{}
 });
 
 //Getters
 export const getters={
   getSchool: state => state.School,
-  getAllSchools: state => state.Schools
+  getAllSchools: state => state.Schools,
+  getErrorO:state => state.ErrorObj,
 }
 
 //Actions
 export const actions={
 
-  async getSchoolByName({commit},schoolName){
-    let schoolObj = await this.$axios.get("http://localhost:8080/api/v1/management/schoolName/"
-                    +schoolName);
-    commit('setSchool',schoolObj.data);
-    return schoolObj.data;
+  async getSchoolByName({rootState, rootGetters,commit},schoolName){
+
+    await this.$axios.get(process.env.ManagementURl+"schoolName/"
+        +schoolName, {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('Access_Tokens')
+        }}
+      ).then(response =>{commit('setSchool',response.data);})
+      .catch( function (error){
+        console.log(error.response.data);
+        console.log(error.response.status);
+
+        let err ={message:"School does not exist!"}
+        commit('set_Error',err);
+    });
+
+  },
+
+  async getSchools({commit}){
+    await this.$axios.get(process.env.ManagementURl+"schools",
+      {
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('Access_Tokens')}
+      }
+    ).then( response => {commit('setSchoolArray',response.data);})
+      .catch(function (error){
+        console.log("HTTP Status: ",error.response.status);
+        console.log("error message: ",error.response.data);
+
+        let err ={message:"Error in receiving data."}
+        commit('set_Error',err);
+      });
   },
 
   async getSchoolById({commit},Id){
-    let schoolObj = await this.$axios.get("http://localhost:8080/api/v1/management/school/"+
-    Id);
+    let schoolObj = await this.$axios.get(process.env.ManagementURl+"school/"+
+        Id,{headers: {'Authorization': 'Bearer ' + localStorage.getItem('Access_Tokens')}
+    });
     commit('setSchool',schoolObj.data);
     return schoolObj.data;
   },
@@ -53,5 +81,8 @@ export const mutations={
   },
   setSchoolArray(state,schoolArr){
     state.Schools = schoolArr;
+  },
+  set_Error(state,errorOBj){
+    state.ErrorObj = errorOBj
   }
 }

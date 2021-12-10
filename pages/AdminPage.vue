@@ -140,9 +140,7 @@ export default Vue.extend({
       {Name:'Students',btn:'Student'}
     ],
     show:false,
-  }),
-  computed:{},
-  methods:{}
+  })
 })
 </script>
 
