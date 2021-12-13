@@ -1,10 +1,18 @@
+<!--
+  This is the landing page for the
+  School Management System.
+  This contains the login page.
+-->
 <template>
+  <!-- Login Page Layout -->
   <div class="flex justify-between min-h-screen">
 
+    <!-- this contains image that will be displayed on large screens  -->
     <div class="relative hidden lg:block w-1/2 bg-cover"
          v-bind:style="{ backgroundImage: 'url(' + pic + ')' }"
     ></div>
 
+    <!-- This is the container for the login from -->
     <div class="px-2 flex flex-col justify-center items-center flex-auto bg-gray-100">
 
 
@@ -24,28 +32,43 @@
 
       <form class="flex flex-col space-y-4 my-4 lg:my-8" action="">
 
+        <div v-if="showError">
+          <h3 class=" text-red-600 text-center font-medium text-2xl font-semibold mb-1">
+           {{message}}
+          </h3>
+        </div>
+
         <div class="flex flex-col">
           <label class="text-gray-600" >Username</label>
+
+          <!-- Contain input field for username -->
           <input placeholder="Please enter username"
                  class="transition-all placeholder-gray-400 font-semibold w-72
                   py-2 px-1 rounded
                  focus:outline-none border-none ring-2 ring-gray-300
                  focus:ring-green-400 focus:ring-2"
                  v-model="username" type="text">
+
+          <!-- Error prompt -->
           <div v-if="show">
             <h3 class=" text-red-600 text-center font-semibold">
               Username incorrect!
             </h3>
           </div>
+
         </div>
 
         <div class="flex flex-col">
           <label class="text-gray-600">Password</label>
+
+          <!-- Contain input field for username -->
           <input placeholder="Please enter password"
                  class="transition-all placeholder-gray-400 font-semibold w-72 py-2 px-1 rounded
                  focus:outline-none border-none ring-2 ring-gray-300
                  focus:ring-green-400 focus:ring-2"
                  v-model="password" type="password">
+
+          <!-- Error prompt -->
           <div v-if="show">
             <h3  class=" text-red-600 text-center font-semibold">
               Password incorrect!
@@ -55,18 +78,17 @@
 
       </form>
 
+      <!-- Forget Password feature -->
       <div class="flex justify-center items-center space-x-2">
         <h3 class="font-semibold text-gray-500">Forget Password?</h3>
         <input class="h-4 w-4" v-model="forgetPassword" type="checkbox">
       </div>
 
+      <!-- Buttons calls login function -->
       <button
         class=" mt-6 bg-green-400 px-8 py-2 text-white
-           font-semibold rounded shadow-2xl
-           hover:bg-white
-           hover:text-green-400
-           transition-all
-          "
+           font-semibold rounded shadow-2xl hover:bg-white
+           hover:text-green-400 transition-all"
         v-on:click="login()"
       >
         LOGIN
@@ -78,7 +100,7 @@
 </template>
 
 <script lang="ts">
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Vue from 'vue'
 export default Vue.extend({
   name:'index',
@@ -98,26 +120,37 @@ export default Vue.extend({
     pic:"/loginPic.jpg",
     valid:false,
     show:false,
-    forgetPassword:false
+    showError:false,
+    forgetPassword:false,
+    message:""
   }),
+  watch:{
+    ...mapGetters('AuthStore',["GetLoginError"]),
+  },
   computed:{
+    //This function checks to see if input fields are empty on login
+    //button press.
+
+    ...mapGetters('AuthStore',["GetLoginError"]),
+
     IsValid(){
       let UserLength:number = this.username.length;
       let PasswordLength:number = this.password.length;
 
       if (UserLength <= 0 || PasswordLength <= 0){
         return false;
-      }else{
-        return true;
-      }
+      }else{return true;}
     }
   },
   methods:{
-    ...mapActions("AuthStore",['Login']),
-     login(){
+    // MapAction get the function for the User Store
+    ...mapActions("AuthStore",['Login','RestErrorObj']),
+
+    async login(){
       //Validation
       let Valid:boolean = this.IsValid;
 
+      // this evaluate weather or not the input fields are empty
       if(!Valid){
         this.show=true
       }else{
@@ -125,11 +158,19 @@ export default Vue.extend({
           username: this.username,
           password: this.password
         }
-        this.Login(user);
-        this.$router.push('/AdminPAge');
-      }
 
-    }
+        // This calls the login function from Auth store.
+        await this.Login(user);
+
+        if(this.GetLoginError.show === true){
+          this.showError=true;
+          this.message="Error in Login";
+          this.RestErrorObj();
+        }else { this.routeToPage();}
+      }
+    },
+
+    routeToPage(){this.$router.push('/AdminPAge');}
   }
 })
 </script>
