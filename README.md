@@ -1,4 +1,6 @@
-# smsvnuxt
+# School Management System (Front-end)
+
+![image](https://user-images.githubusercontent.com/61952310/159066218-dc14b1e0-209d-4394-b423-a6c0f0704c33.png)
 
 ## Build Setup
 
