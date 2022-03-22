@@ -2,6 +2,24 @@
 
 ![image](https://user-images.githubusercontent.com/61952310/159066218-dc14b1e0-209d-4394-b423-a6c0f0704c33.png)
 
+
+Software Needed to run application
+-	Docker
+The front-end is dockize, meaning that a docker image is created and the image is stored on a repository on docker hub. So, the application docker is needed to pull the image and run the front-end API.
+
+https://hub.docker.com/search?q=sms_repo&type=image
+
+Front-end API Setup
+Step 1:
+-	 Go to Empowering App Development for Developers | Docker, and click on Get started, and download the Docker desktop application for your operating system. And install the application.
+Step 2:
+-	Go to Docker Hub Container Image Library | App Containerization, and create an account. Please write down the Docker ID and Password to use late to login to the Docker desktop application.
+Step 3:
+ 
+-	Open the Docker desktop application and click on sign in. Use your  credential used to sign into Docker hub.
+
+
+
 ## Build Setup
 
 ```bash
