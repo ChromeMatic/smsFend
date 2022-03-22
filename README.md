@@ -18,6 +18,40 @@ Step 3:
  
 -	Open the Docker desktop application and click on sign in. Use your  credential used to sign into Docker hub.
 
+![image](https://user-images.githubusercontent.com/61952310/159535649-2e49e110-65a3-4a78-bd54-50e23734ba16.png)
+
+-	Open the Docker desktop application and click on sign in. Use your  credential used to sign into Docker hub.
+
+Back-end API
+Step:1
+
+Open any terminal of your liking, command prompt, power shell, git bash etc. And type the command:
+docker run  - -name BackEnd-API  -d -p 3000:3000 armanibrown/backend
+and press enter.
+
+![image](https://user-images.githubusercontent.com/61952310/159535810-2f62c01a-fbed-4f23-9e54-bf9507351193.png)
+
+Front-end API
+
+Step 1:
+
+Open any terminal of your liking, command prompt, power shell, git bash etc. And type the command:
+ docker run  - -name API -d -p 3000:3000 armanibrown/sms_repo
+and press enter.
+
+![image](https://user-images.githubusercontent.com/61952310/159535869-c2c304a6-d075-41ae-9783-2a1a6772b879.png)
+
+Step: 2
+-	Open any web bowers of your choosing and type, localhost:3000
+-	Enter username and password.   
+Username:  Dev
+Password:  1234
+
+![image](https://user-images.githubusercontent.com/61952310/159535949-9b85017e-0244-41e9-8d56-d5c2ce477ed0.png)
+
+The front-end API is know running on port 3000 and the back-end API is know running on port 8080.
+
+The  database is hosted on Amazon Web Services, so response time may take more then 3 seconds, sorry or the delay.
 
 
 ## Build Setup
